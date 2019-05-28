@@ -418,6 +418,8 @@ def trainIters(model_name, voc, pairs, encoder, decoder, encoder_optimizer, deco
     training_batches = [batch_to_train_data(voc, [random.choice(pairs) for _ in range(batch_size)])
                       for _ in range(n_iteration)]
 
+    if loadFilename:
+        start_iteration = checkpoint['iteration'] + 1
 
     # Initializations
     print('Initializing ...')
@@ -550,7 +552,7 @@ batch_size = 512
 corpus_name = "reddit_comments"
 
 # Set checkpoint to load from; set to None if starting from scratch
-loadFilename = None
+loadFilename = "/home/nicholas/data/reddit_data/save/cb_model/reddit_comments/2-2_750/4000_checkpoint.tar"
 checkpoint_iter = 4000
 
 if loadFilename:
